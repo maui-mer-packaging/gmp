@@ -1,0 +1,21 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Wed, 1 Oct 2014 07:27:15 +0200
+Subject: tscan
+
+---
+ tests/mpz/t-scan.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/mpz/t-scan.c b/tests/mpz/t-scan.c
+index 6598ed9..8ae97cb 100644
+--- a/tests/mpz/t-scan.c
++++ b/tests/mpz/t-scan.c
+@@ -79,7 +79,7 @@ check_ref (void)
+ 
+               for (isize = 0; isize <= size; isize++)
+                 {
+-                  for (oindex = 0; oindex <= numberof (offset); oindex++)
++                  for (oindex = 0; oindex < numberof (offset); oindex++)
+                     {
+                       o = offset[oindex];
+                       if ((int) isize*GMP_NUMB_BITS < -o)

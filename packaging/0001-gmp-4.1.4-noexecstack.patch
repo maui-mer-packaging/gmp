@@ -1,10 +1,19 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Wed, 1 Oct 2014 07:27:15 +0200
+Subject: gmp-4.1.4-noexecstack
+
 fixed executable stack
 
 http://bugs.gentoo.org/115038
+---
+ configure | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
---- gmp-4.1.4/configure
-+++ gmp-4.1.4/configure
-@@ -21689,6 +21689,13 @@
+diff --git a/configure b/configure
+index 215ea71..2e1548c 100755
+--- a/configure
++++ b/configure
+@@ -34201,6 +34201,13 @@ fi
  echo "')" >> $gmp_configm4
  echo "define(\`__CONFIG_M4_INCLUDED__')" >> $gmp_configm4
  

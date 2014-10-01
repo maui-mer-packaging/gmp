@@ -1,6 +1,16 @@
---- gmp-5.0.5+dfsg.orig/mpn/arm/udiv.asm
-+++ gmp-5.0.5+dfsg/mpn/arm/udiv.asm
-@@ -48,7 +48,7 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Wed, 1 Oct 2014 07:27:15 +0200
+Subject: arm-binutils-hack
+
+---
+ mpn/arm/udiv.asm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/mpn/arm/udiv.asm b/mpn/arm/udiv.asm
+index 9434a4f..3d85b97 100644
+--- a/mpn/arm/udiv.asm
++++ b/mpn/arm/udiv.asm
+@@ -48,7 +48,7 @@ L(oop):	divstep(n1,n0,d)
  	teq	r12, #0
  	bne	L(oop)
  
@@ -9,7 +19,7 @@
  	adc	r0, n0, n0		C quotient: add last carry from divstep
  	mov	pc, lr
  
-@@ -87,7 +87,7 @@
+@@ -87,7 +87,7 @@ L(oop2):
  	addcs	n0, n0, #1		C adjust quotient
  
  L(_even_divisor):

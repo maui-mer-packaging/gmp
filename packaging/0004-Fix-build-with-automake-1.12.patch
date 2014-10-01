@@ -1,0 +1,57 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Wed, 1 Oct 2014 07:10:10 +0200
+Subject: Fix build with automake 1.12
+
+automake 1.12 has deprecated automatic de-ANSI-fication support.
+
+This patch avoids this kind of errors:
+
+[   46s] + autoreconf -if
+[   49s] configure.in:2146: error: automatic de-ANSI-fication support has been removed
+[   49s] /usr/share/aclocal-1.12/protos.m4:12: AM_C_PROTOTYPES is expanded from...
+[   49s] configure.in:2146: the top level
+[   49s] autom4te: /usr/bin/m4 failed with exit status: 1
+[   49s] aclocal: error: /usr/bin/autom4te failed with exit status: 1
+[   49s] autoreconf: aclocal failed with exit status: 1
+[   49s] error: Bad exit status from /var/tmp/rpm-tmp.OkHii8 (%build)
+---
+ Makefile.am  | 2 +-
+ configure.in | 5 +----
+ 2 files changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 6a2bd13..669b31f 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -25,7 +25,7 @@
+ # Makefiles in subdirectories, but here we must omit it so automake gives
+ # the actual ansi2knr build rule, not "cd $(top_builddir) && make ansi2knr".
+ #
+-AUTOMAKE_OPTIONS = 1.8 gnu no-dependencies ansi2knr
++AUTOMAKE_OPTIONS = 1.8 gnu no-dependencies
+ 
+ 
+ # Libtool -version-info for libgmp.la and libmp.la.  See "Versioning" in the
+diff --git a/configure.in b/configure.in
+index d9c7ebb..fd0d73d 100644
+--- a/configure.in
++++ b/configure.in
+@@ -65,7 +65,7 @@ dnl
+ dnl  Note that there's a copy of these options in the top-level Makefile.am,
+ dnl  so update there too if changing anything.
+ dnl
+-AM_INIT_AUTOMAKE([1.8 gnu no-dependencies $(top_builddir)/ansi2knr])
++AM_INIT_AUTOMAKE([1.8 gnu no-dependencies])
+ AM_CONFIG_HEADER(config.h:config.in)
+ AM_MAINTAINER_MODE
+ 
+@@ -2072,9 +2072,6 @@ fi
+ echo "      MPN_PATH=\"$path\""
+ 
+ 
+-# Automake ansi2knr support.
+-AM_C_PROTOTYPES
+-
+ CL_AS_NOEXECSTACK
+ 
+ GMP_PROG_AR
