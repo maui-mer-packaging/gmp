@@ -34201,6 +34201,13 @@ fi
 echo "')" >> $gmp_configm4
 echo "define(\`__CONFIG_M4_INCLUDED__')" >> $gmp_configm4
 
+# Gentoo hack
+case $host_os in
+	*linux*)
+		echo '.section .note.GNU-stack,"",%progbits' >> $gmp_configm4
+		echo '.previous' >> $gmp_configm4
+		;;
+esac
 
 # Create Makefiles
 # FIXME: Upcoming version of autoconf/automake may not like broken lines.
